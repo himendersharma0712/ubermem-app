@@ -68,5 +68,5 @@ Processes are evaluated based on weighted feature extraction:
 
 ## ⚠️ Disclaimer
 
-UberMem v1.0 interfaces directly with the Windows Kernel. Improper use or modification of kernel-level actuation calls (`NtSetSystemInformation`) can lead to system instability. This utility is intended for high-performance and educational environments.
+ÜberMem v1.0 interfaces directly with the Windows Kernel. Improper use or modification of kernel-level actuation calls (`NtSetSystemInformation`) can lead to system instability. This utility is intended for high-performance and educational environments.
 
