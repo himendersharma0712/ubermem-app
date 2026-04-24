@@ -104,26 +104,39 @@ Window {
                     spacing: 20
                     Layout.alignment: Qt.AlignHCenter
 
-                    Button {
+                    Rectangle {
                         id: purgeButton
-                        text: "CLEAN MEMORY"
-                        Layout.preferredWidth: 280; Layout.preferredHeight: 55
-                        Layout.alignment: Qt.AlignHCenter
-                        onClicked: {
-                            if (typeof processModel !== "undefined") {
-                                processModel.purgeRiskProcesses();
-                            }
+                        width: 260
+                        height: 50
+                        radius: 10
+                        Layout.alignment: Qt.AlignCenter
+
+                        color: mouseArea.pressed ? "#2d7dd2"
+                             : mouseArea.containsMouse ? "#3c8ce7"
+                             : "#4da3ff"
+
+                        border.color: "#5fb0ff"
+                        border.width: 1
+
+                        layer.enabled: true
+
+
+                        Text {
+                            anchors.centerIn: parent
+                            text: "CLEAN MEMORY"
+                            color: "white"
+                            font.bold: true
                         }
-                        contentItem: Text {
-                            text: purgeButton.text; color: "white"; font.bold: true; font.pixelSize: 14
-                            horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter
-                        }
-                        background: Rectangle {
-                            color: purgeButton.down ? "#005a9e" : "#0078d4"
-                            radius: 10
-                            layer.enabled: true
-                            layer.effect: MultiEffect {
-                                shadowEnabled: true; shadowColor: "#0078d4"; shadowBlur: 0.8
+
+                        MouseArea {
+                            id: mouseArea
+                            anchors.fill: parent
+                            hoverEnabled: true
+
+                            onClicked: {
+                                if (typeof processModel !== "undefined") {
+                                                               processModel.purgeRiskProcesses();
+                                                           }
                             }
                         }
                     }
@@ -144,7 +157,7 @@ Window {
                             Column {
                                 Text {
                                     text: performanceModeSwitch.checked ? "PERFORMANCE MODE" : "BALANCED MODE"
-                                    color: performanceModeSwitch.checked ? "#ff3333" : "white"
+                                    color: performanceModeSwitch.checked ? "orange" : "white"
                                     font.bold: true; font.pixelSize: 12
                                 }
                                 Text {
@@ -165,12 +178,12 @@ Window {
                             }
                             Column {
                                 Text {
-                                    text: autoModeSwitch.checked ? "AUTOMATIC CLEANING" : "MANUAL CLEANING"
+                                    text: autoModeSwitch.checked ? "AUTO CLEANUP" : "AUTO CLEANUP"
                                     color: autoModeSwitch.checked ? "#00ffcc" : "white"
                                     font.bold: true; font.pixelSize: 12
                                 }
                                 Text {
-                                    text: autoModeSwitch.checked ? "SENTINEL ACTIVE" : "WAIT FOR TRIGGER"
+                                    text: autoModeSwitch.checked ? "Monitoring system" : "Runs when memory usage spikes"
                                     color: "#888"; font.pixelSize: 10
                                 }
                             }
